@@ -35,6 +35,8 @@ func NewKV() *KV {
 }
 
 func (k *KV) GetAll() *data {
+	k.RLock()
+	defer k.RUnlock()
 	return &k.data
 }
 

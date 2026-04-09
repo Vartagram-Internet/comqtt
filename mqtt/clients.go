@@ -297,7 +297,7 @@ func (cl *Client) NextPacketID() (i uint32, err error) {
 		i++
 
 		// Use lock-free access to avoid nested locking
-		if _, ok := cl.State.Inflight.GetNoLock(uint16(i)); !ok {
+		if _, ok := cl.State.Inflight.Get(uint16(i)); !ok {
 			cl.State.packetID = i
 			return i, nil
 		}
